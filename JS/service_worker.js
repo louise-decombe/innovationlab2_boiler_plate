@@ -5,14 +5,23 @@ self.addEventListener("install", (event) => {
     event.waitUntil((async () => {
         const cache = await caches.open(PREFIX)
         cache.add(new Request('/offline.html'))
-        
+
     })());
 
     console.log(`${PREFIX} Install`);
 
 });
-self.addEventListener("activate", () => {
+self.addEventListener("activate", (event) => {
     clients.claim();
+    event.waitUntil((async() => {
+const keys = await caches.keys();
+keys.map(key => {
+    if (!key.includes(PREFIX)) {
+        caches.delete(key)
+    }
+    console.log(key);
+});
+    })());
     console.log(`${PREFIX} Active`);
 });
 
@@ -31,7 +40,9 @@ self.addEventListener("fetch", (event) => {
                     return await fetch(event.request)
 
                 } catch (e) {
-                    return new Response("Error");
+
+                    const cache = await caches.open(PREFIX);
+                    return await cache.match('/offline.html');
 
                 }
             })()
