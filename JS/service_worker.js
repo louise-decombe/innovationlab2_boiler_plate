@@ -1,25 +1,22 @@
 const PREFIX = "Version";
 
 const CACHED_FILE = [
-    "https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css",
-    "/assets/css/style.css"
+    "https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
 
 ];
 
 self.addEventListener("install", (event) => {
     self.skipWaiting();
-    event.waitUntil((async () => {
-        const cache = await caches.open(PREFIX)
-
-        await Promise.all([...CACHED_FILE, '/offline.html'].map((path) => {
-            return cache.add(new Request(path));
-        }))
-
-    })());
-
+    event.waitUntil(
+      (async () => {
+        const cache = await caches.open(PREFIX);
+        await cache.addAll([CACHED_FILE, "./offline.html"]);
+      })()
+    );
     console.log(`${PREFIX} Install`);
+  });
 
-});
+  
 self.addEventListener("activate", (event) => {
     clients.claim();
     event.waitUntil((async () => {
@@ -59,8 +56,6 @@ self.addEventListener("fetch", (event) => {
                     return await cache.match('/offline.html');
 
                 }
-
-
 
             })()
         );
