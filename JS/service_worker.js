@@ -1,10 +1,19 @@
 const PREFIX = "Version";
 
+const CACHED_FILE = [
+    "https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css",
+    "/assets/css/style.css"
+
+];
+
 self.addEventListener("install", (event) => {
     self.skipWaiting();
     event.waitUntil((async () => {
         const cache = await caches.open(PREFIX)
-        cache.add(new Request('/offline.html'))
+
+        await Promise.all([...CACHED_FILE, '/offline.html'].map((path) => {
+            return cache.add(new Request(path));
+        }))
 
     })());
 
@@ -13,14 +22,20 @@ self.addEventListener("install", (event) => {
 });
 self.addEventListener("activate", (event) => {
     clients.claim();
-    event.waitUntil((async() => {
-const keys = await caches.keys();
-keys.map(key => {
-    if (!key.includes(PREFIX)) {
-        caches.delete(key)
-    }
-    console.log(key);
-});
+    event.waitUntil((async () => {
+        const keys = await caches.keys();
+
+        await Promise.all(
+            keys.map(key => {
+                if (!key.includes(PREFIX)) {
+                    caches.delete(key)
+                }
+                console.log(key);
+
+
+            })
+        );
+
     })());
     console.log(`${PREFIX} Active`);
 });
@@ -30,7 +45,6 @@ self.addEventListener("fetch", (event) => {
     if (event.request.mode == "navigate") {
         event.respondWith(
             (async () => {
-
                 try {
                     const preloadResponse = await event.preloadResponse
                     if (preloadResponse) {
@@ -45,7 +59,17 @@ self.addEventListener("fetch", (event) => {
                     return await cache.match('/offline.html');
 
                 }
+
+
+
             })()
         );
+
+
+    }
+
+    else if(CACHED_FILE.includes(event.request.url)){
+        event.respondWith(caches.match(event.request));
+
     }
 });
