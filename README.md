@@ -16,3 +16,22 @@ JS
 <img src="pwareact.png" alt="drawing" width="200"/>
 REACT 
 ## A PWA boiler plate using React libraries.
+
+ReactJs
+```
+cd front
+```
+```
+npm install
+```
+```
+npm start
+```
+Strapi
+```
+cd back
+```
+```
+npm run develop
+```
+You now run the backend part on your localhost:1337.
