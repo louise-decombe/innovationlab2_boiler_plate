@@ -1,6 +1,6 @@
 {
   "homepage": ".",
-  "name": "cra-pwa",
+  "name": "pwa-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
