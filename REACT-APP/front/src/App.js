@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-
 import LoginForm from './components/LoginForm'
 import SignUp from './components/Signup'
 import About from './components/About/About'
 
 
 function App() {
-
 
   const adminUser = {
    email: "admin@mail.com",
@@ -73,7 +71,6 @@ function App() {
               <Route path="/sign-in" element={<Login />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
 
             </Routes>
           </div>
