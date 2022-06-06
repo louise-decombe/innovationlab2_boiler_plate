@@ -3,36 +3,25 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import SignUp from './components/Signup'
 import About from './components/About/About'
+import Posts from './components/Post/Posts'
+import Container from '@mui/material/Container';
+import Navbar from './components/Navbar';
+
+import BottomNavigation from '@mui/material/BottomNavigation';
 
 
 function App() {
 
-  const adminUser = {
-   email: "admin@mail.com",
-   password: "root"   
-  }
-
-  const [user, setUser] = useState({name: "", email: ""});
-  const [error, setError] = useState("");
-  const Login = details => {
-    console.log(details);
-  }
-
-  const Logout = () => {
-    console.log("logout")
-  }
-
   return (
+    <Container>
 
+  <Navbar />
     <Router>
       <div className="App">
-
         <nav className="">
-          <div className="navigation">
-            <Link className="" to={'/sign-in'}>
-              App 
-            </Link>
-            <div className="" id="">
+          <div className="">
+           
+            <div className="navigation" id="">
               <ul className="">
                 <li className="">
                   <Link className="" to={'/sign-in'}>
@@ -54,11 +43,20 @@ function App() {
           </div>
         </nav>
 
+        <Link className="" to={'/sign-in'}>
+              App 
+            </Link>
+
+
+
+
+        <Posts />
+
         <div className="">
           <div className="">
             <Routes>
-              <Route exact path="/" element={<Login />} />
-              <Route path="/sign-in" element={<Login />} />
+              <Route exact path="/" element={<LoginForm />} />
+              <Route path="/sign-in" element={<LoginForm />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/about" element={<About />} />
 
@@ -67,6 +65,8 @@ function App() {
         </div>
       </div>
     </Router>
+    </Container>
+
   )
 }
 
