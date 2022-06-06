@@ -28,10 +28,11 @@ npm install
 npm start
 ```
 Strapi
+
+You need to have Docker installed on your machine.
+
 ```
-cd back
+docker-compose up --build
 ```
-```
-npm run develop
-```
-You now run the backend part on your localhost:1337.
+
+You now run the backend strapi part on your localhost:1337 thanks to docker ! .
