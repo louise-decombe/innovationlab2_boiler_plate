@@ -27,18 +27,8 @@ function App() {
     <Router>
       <div className="App">
 
-        {(user.email != "")} ? (
-          <div className='logged'>
-            <h2> You are logged in {user.name} </h2>
-            <button> logout </button>
-          </div>
-        ) : (
-
-          <LoginForm Login={Login} error={error}/>
-        )
-
         <nav className="">
-          <div className="container">
+          <div className="navigation">
             <Link className="" to={'/sign-in'}>
               App 
             </Link>

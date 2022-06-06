@@ -1,13 +1,4 @@
 {
-  "dependencies": {
-    "@strapi/plugin-graphql": "^4.0.0",
-    "lodash.set": "^4.3.2",
-    "mime-types": "^2.1.27",
-    "@strapi/strapi": "4.1.12",
-    "@strapi/plugin-users-permissions": "4.1.12",
-    "@strapi/plugin-i18n": "4.1.12",
-    "better-sqlite3": "7.4.6"
-  },
   "name": "backend",
   "private": true,
   "version": "0.1.0",
@@ -18,13 +9,18 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
+  "dependencies": {
+    "@strapi/plugin-i18n": "4.1.12",
+    "@strapi/plugin-users-permissions": "4.1.12",
+    "@strapi/strapi": "4.1.12",
+    "better-sqlite3": "7.4.6",
+    "mysql": "^2.18.1"
+  },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "5d044d2c-0d61-49fd-9422-13776f441b3c",
-    "template": "@strapi/template-blog@1.0.0"
+    "uuid": "8f111c89-2bb7-4123-a87e-e00dd4a25e05"
   },
   "engines": {
     "node": ">=12.x.x <=16.x.x",
