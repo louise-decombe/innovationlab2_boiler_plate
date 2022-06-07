@@ -4,8 +4,11 @@ import LoginForm from './components/LoginForm'
 import SignUp from './components/Signup'
 import About from './components/About/About'
 import Posts from './components/Post/Posts'
+import Post from './components/Post/Post'
 import Container from '@mui/material/Container';
 import Navbar from './components/Navbar';
+import Contact from './components/Contact/Contact';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
@@ -20,46 +23,16 @@ function App() {
   <Navbar />
     <Router>
       <div className="App">
-        <nav className="">
-          <div className="">
-           
-            <div className="navigation" id="">
-              <ul className="">
-                <li className="">
-                  <Link className="" to={'/sign-in'}>
-                    Login
-                  </Link>
-                </li>
-                <li className="">
-                  <Link className="" to={'/sign-up'}>
-                    Sign up
-                  </Link>
-                </li>
-                <li className="">
-                  <Link className="" to={'/about'}>
-                    About
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        <Link className="" to={'/sign-in'}>
-              App 
-            </Link>
-
-
-
-
-        <Posts />
 
         <div className="">
           <div className="">
             <Routes>
+            <Route path="/" element={<Posts />} />
+            <Route path="/posts/:id" element={<Post />} />
+            <Route path="/sign-up" element={<SignUp />} /> 
               <Route path="/sign-in" element={<LoginForm />} />
-              <Route path="/sign-up" element={<SignUp />} />
               <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
 
             </Routes>
           </div>
