@@ -29,7 +29,7 @@ class Posts extends React.Component {
     return (
       <div className="App">
 
-
+<h1> Last posts</h1>
         <Grid container spacing={3}>
         {this.state.posts.map(post => (
 

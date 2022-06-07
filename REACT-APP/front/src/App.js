@@ -6,6 +6,8 @@ import About from './components/About/About'
 import Posts from './components/Post/Posts'
 import Container from '@mui/material/Container';
 import Navbar from './components/Navbar';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 import BottomNavigation from '@mui/material/BottomNavigation';
 
@@ -55,7 +57,6 @@ function App() {
         <div className="">
           <div className="">
             <Routes>
-              <Route exact path="/" element={<LoginForm />} />
               <Route path="/sign-in" element={<LoginForm />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/about" element={<About />} />
