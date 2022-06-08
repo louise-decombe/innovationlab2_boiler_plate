@@ -6,12 +6,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { API_URL } from '../config';
-import { Link } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 export default function CardPost({post}) {
     console.log(post)
   return (
+      
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
@@ -32,7 +32,7 @@ export default function CardPost({post}) {
         <Button size="small">Read More</Button>
         </NavLink>
       </CardActions>
-
     </Card>
+   
   );
 }

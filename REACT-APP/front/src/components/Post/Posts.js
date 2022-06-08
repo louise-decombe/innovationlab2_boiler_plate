@@ -27,18 +27,22 @@ class Posts extends React.Component {
     }
 
     return (
+     
+     
       <div className="App">
 
-<h1> Last posts</h1>
+      <h1> Last posts</h1>
         <Grid container spacing={3}>
         {this.state.posts.map(post => (
 
 
-<CardPost post={post} key={post.attributes.id} />
-))}
+        <CardPost post={post} key={post.attributes.id} />       
+          
+      ))}
         </Grid >
 
       </div>
+    
     );
   }
 }
