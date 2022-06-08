@@ -5,7 +5,7 @@ import authApi from '../services/authApi'
 
 const LoginForm = () => {
   const [credentials, setCredentials] = useState ({
-    identifier: "",
+    username: "",
     password: ""
   })
 
@@ -36,7 +36,7 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit}>
       <div>
       <TextField
-      id="identifier"
+      id="username"
       label="Username"
       type="text"
       name="identifier"

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { API_URL } from '../../config'
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
+
 class Post extends React.Component {
 
 
@@ -29,6 +31,7 @@ class Post extends React.Component {
     }
 
     return (
+
       <div className="App">
         <ul>
           {this.state.singleposts.map(singlepost => (
