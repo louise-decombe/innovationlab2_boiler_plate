@@ -1,46 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { API_URL } from '../../config'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useHistory } from "react-router-dom";
+import Grid from '@mui/material/Grid';
 
-class Post extends React.Component {
+const BASE_URL = "http://localhost:1337/api/posts/1";
 
+export default function App() {
+  const [post, setPost] = React.useState(null);
 
+  React.useEffect(() => {
+    axios.get(BASE_URL).then((response) => {
+      setPost(response.data.data.attributes);
+    });
+  }, []);
 
-  state = {
-    singleposts: [],
-    error: null,
-  };
+  if (!post) return null;
 
-  componentDidMount = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/api/posts/1`);
-      this.setState({ singleposts: response.data });
-    } catch (error) {
-      this.setState({ error });
-    }
-  };
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+    </div>
 
-  render() {
-    const { error, singlepost } = this.state;
-
-    // Print errors if any
-    if (error) {
-      return <div>An error occured: {error.message}</div>;
-    }
-
-    return (
-
-      <div className="App">
-        <ul>
-          {this.state.singleposts.map(singlepost => (
-            <li key={singlepost.id}>{singlepost.title}</li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
+  );
 }
-
-export default Post;

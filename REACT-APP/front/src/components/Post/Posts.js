@@ -1,50 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Grid from '@mui/material/Grid';
 import CardPost from '../CardPost';
 
-class Posts extends React.Component {
-  state = {
-    posts: [],
-    error: null,
-  };
+const BASE_URL = "http://localhost:1337/api/posts/1";
 
-  componentDidMount = async () => {
-    try {
-      const response = await axios.get('http://localhost:1337/api/posts?populate=*');
-      this.setState({ posts: response.data.data });
-      console.log(response)
-    } catch (error) {
-      this.setState({ error });
-    }
-  };
+export default function App() {
+  const [post, setPost] = React.useState(null);
 
-  render() {
-    const { error, post } = this.state;
+  React.useEffect(() => {
+    axios.get(BASE_URL).then((response) => {
+      setPost(response.data.data.attributes);
+    });
+  }, []);
 
-    if (error) {
-      return <div>An error occured: {error.message}</div>;
-    }
+  if (!post) return null;
 
-    return (
-     
-     
-      <div className="App">
-
-      <h1> Last posts</h1>
-        <Grid container spacing={3}>
-        {this.state.posts.map(post => (
-
-
-        <CardPost post={post} key={post.attributes.id} />       
-          
-      ))}
-        </Grid >
-
-      </div>
-    
-    );
-  }
+  return (
+    <div>
+      <h1>{post.title}</h1>
+    </div>
+  );
 }
-
-export default Posts;
