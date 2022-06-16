@@ -113,4 +113,5 @@ exports
 build
 .strapi-updater.json
 
-data/
+REACT-APP/data/
+REACT-APP/backend/data/

@@ -12,8 +12,9 @@ services:
         DATABASE_PASSWORD: strapi
         DATABASE_SSL: 'false'
       volumes:
-        - ./backend:/usr/src/app
-        - /usr/src/app/node_modules
+        - ./backend/:/usr/src/app
+        # - /usr/src/app/node_modules
+        - node_modules:/usr/src/app/node_modules
       ports:
         - "1337:1337"
       networks:
@@ -34,3 +35,5 @@ services:
       - backend
 networks:
   backend:
+volumes:
+  node_modules:
