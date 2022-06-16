@@ -1,5 +1,5 @@
 
-import { URL_LOGIN } from "../config";
+import { URL_LOGIN } from "../config/config";
 import axios from "axios";
 import jwrDecode from "jwt-decode"
 

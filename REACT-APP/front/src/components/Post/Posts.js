@@ -1,24 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Grid from '@mui/material/Grid';
+import Loading from '../Loading';
 import CardPost from '../CardPost';
 
-const BASE_URL = "http://localhost:1337/api/posts/1";
+const BASE_URL = "http://localhost:1337/api/posts";
 
-export default function App() {
-  const [post, setPost] = React.useState(null);
+export default function Posts() {
+  const [listposts, setListPosts] = useState([]);
 
-  React.useEffect(() => {
-    axios.get(BASE_URL).then((response) => {
-      setPost(response.data.data.attributes);
-    });
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        'https://localhost:1337/api/posts',
+      );
+
+      setListPosts(result.data);
+    };
+
+    fetchData();
   }, []);
 
-  if (!post) return null;
-
   return (
-    <div>
-      <h1>{post.title}</h1>
+  
+    <div className="App">
+    <h1> Last posts</h1>
+      <Grid container spacing={3}>
+      {listposts.map(listpost => (
+
+      <CardPost post={listpost} key={listpost.attributes.id} />       
+        
+    ))}
+      </Grid >
+
     </div>
+  
   );
-}
+} 

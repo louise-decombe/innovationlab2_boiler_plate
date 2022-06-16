@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Grid from '@mui/material/Grid';
 
 const BASE_URL = "http://localhost:1337/api/posts/1";
 
-export default function App() {
+export default function Post() {
   const [post, setPost] = React.useState(null);
 
   React.useEffect(() => {
@@ -18,6 +17,7 @@ export default function App() {
   return (
     <div>
       <h1>{post.title}</h1>
+
       <p>{post.content}</p>
     </div>
 
